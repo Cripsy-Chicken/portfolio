@@ -1,0 +1,64 @@
+
+/* Smooth scrolling */
+html {
+    scroll-behavior: smooth;
+  }
+  
+  /* Styling the navbar */
+  .navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background-color: #9c6f44;
+    padding: 10px 20px;
+    z-index: 1000;
+  }
+  
+  .navbar ul {
+    display: flex;
+    justify-content: space-around;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .navbar li {
+    padding: 10px;
+  }
+  
+  .navbar a {
+    color: white;
+    text-decoration: none;
+    font-size: 1.2rem;
+    padding: 5px 10px;
+  }
+  
+  .navbar a:hover {
+    background-color: #555;
+    border-radius: 5px;
+  }
+  
+  /* Spacing for sections */
+  #about, #projects, #skills, #contact {
+    padding-top: 80px;  /* Prevent content from being hidden behind the navbar */
+    padding-bottom: 10px; /* Add space at the bottom */
+    margin: 20px 0;
+  }
+
+  
+  /* App.css */
+  
+  /* Container that holds all project blocks */
+  #projects {
+    display: flex;
+    flex-wrap: wrap;  /* Allows wrapping the elements into multiple rows */
+    justify-content: space-evenly;  /* Center elements with even spacing */
+    gap: 10px;  /* Adds space between the blocks */
+    padding-right: 20px;
+    padding-left: 20px;
+    padding-bottom: 20px;
+    padding-top: 0px;
+  }
+  
+  

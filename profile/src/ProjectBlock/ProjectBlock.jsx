@@ -1,19 +1,60 @@
-import React from 'react';
+import { useEffect, useRef, useState } from 'react';
+import './ProjectBlock.css';
 
 const ProjectBlock = ({ title, summary, techIcons, videoFile, imageFile }) => {
+  const blockRef = useRef(null);
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const [entry] = entries;
+        // If the entry is in the viewport, set the visibility to true
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+        } else {
+          // If the entry is not in the viewport, set visibility back to false
+          setIsVisible(false);
+        }
+      },
+      {
+        threshold: 0.2, // Trigger when 20% of the block is visible
+      }
+    );
+
+    if (blockRef.current) {
+      observer.observe(blockRef.current);
+    }
+
+    return () => {
+      if (blockRef.current) {
+        observer.unobserve(blockRef.current);
+      }
+    };
+  }, []);
+
   return (
-    <div style={styles.container}>
+    <div
+      ref={blockRef}
+      style={{
+        ...styles.container,
+        opacity: isVisible ? 1 : 0, // Fade-in effect
+        transition: 'opacity 1s ease-in-out', // Smooth transition for fade-in
+      }}
+    >
       <div style={styles.textContainer}>
         <h2 style={styles.title}>{title}</h2>
         <p style={styles.techIcons}>{techIcons}</p>
         <p style={styles.summary}>{summary}</p>
       </div>
 
-      {/* Local video file */}
       {videoFile && (
         <div style={styles.mediaContainer}>
           <video
             controls
+            autoPlay
+            loop
+            muted
             style={styles.media}
           >
             <source src={videoFile} type="video/mp4" />
@@ -22,7 +63,7 @@ const ProjectBlock = ({ title, summary, techIcons, videoFile, imageFile }) => {
         </div>
       )}
 
-    {imageFile && !videoFile && (
+      {imageFile && !videoFile && (
         <div style={styles.mediaContainer}>
           <img
             src={imageFile}
@@ -31,27 +72,27 @@ const ProjectBlock = ({ title, summary, techIcons, videoFile, imageFile }) => {
           />
         </div>
       )}
-
     </div>
   );
 };
+
 
 const styles = {
   container: {
     display: 'flex',
     flexDirection: 'column', // Arrange everything in a column
-    width: '100%',
     background: "#3c220f",  // Slightly lighter background
     borderRadius: '45px',
     padding: '20px',
-    margin: '30px',  // Space between projects
+    margin: '0px',  // Space between projects
+    width: '1200px'
   },
   textContainer: {
     marginBottom: '20px',  // Add space between text and media
   },
   title: {
     fontSize: '3rem',
-    color: '#9c6f44',
+    color: '#f5f5dc',
     fontWeight: '700',
     marginBottom: '10px',
   },
@@ -80,7 +121,7 @@ const styles = {
     display: 'flex',
     justifyContent: 'center',  // Center horizontally
     alignItems: 'center',      // Center vertically (if you want the video centered within a specific height)
-    marginTop: '20px',
+    margin: '20px',
     height: 'auto',  // Ensure the container height adjusts based on the content
   },
   media: {

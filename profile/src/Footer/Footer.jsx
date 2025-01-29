@@ -9,7 +9,7 @@ const Footer = () => {
   };
 
   return (
-    <footer style={styles.footer}>
+    <footer style={styles.footer} id="contact">
       <div style={styles.iconsContainer}>
         {/* Envelope Image for Email */}
         <img

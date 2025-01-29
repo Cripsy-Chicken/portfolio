@@ -11,11 +11,11 @@ const Intro = ({ name, greeting, imageSrc, altText, text }) => {
         <p style={styles.greeting}> {greeting} </p>
         {/* Name in brown and uppercase, left-aligned */}
         <p style={styles.name}>
-          <span style={styles.text}>I'm </span>
+          <span style={styles.inlineText}>I'm </span>
           {name.toUpperCase()}
         </p>
         {/* The rest of the text */}
-        <p style={styles.text}>{text}</p>
+        <p style={styles.inlineText}>{text}</p>
       </div>
     </div>
   );
@@ -28,14 +28,15 @@ const styles = {
     height: 'auto',
     background: "#271300",
     borderRadius: '45px',
-    padding: '20px',
+    padding: '0px',
+    marginTop: '40px'
   },
   imageContainer: {
     flex: 1,
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    padding: '20px',
+    padding: '50px',
   },
   image: {
     width: '100%',
@@ -50,36 +51,35 @@ const styles = {
     flexDirection: 'column',  // Stack text vertically
     alignItems: 'flex-start',  // Align all text to the left
     justifyContent: 'center',  // Center text vertically within the container
-    fontFamily: "'Helvetica Neue', Arial, sans-serif",
-    fontSize: '1.5rem',  // Adjust font size for better readability
-    fontWeight: 400,  // Regular font weight for text
-    lineHeight: 1.5,  // Adjust line height for clarity
-    marginTop: '0px',
+    // fontFamily: "'Helvetica Neue', Arial, sans-serif",
+    // fontSize: '1.5rem',  // Adjust font size for better readability
+    // fontWeight: 400,  // Regular font weight for text
+    // lineHeight: 1.5,  // Adjust line height for clarity
+    marginBottom: '40px',
     textAlign: 'left',  // Explicitly set text alignment to left
+    lineHeight: 1.2
   },
   name: {
     color: '#9c6f44',  // Brown color for the name
-    fontSize: '4rem',  // Larger font size for the name
+    fontSize: '4.5rem',  // Larger font size for the name
     fontWeight: 700,  // Bold font weight for the name
     margin: '0px',  // Add some space below the name
+    lineHeight: 1,
   },
   greeting: {
     color: '#f5f5dc',  // Beige color for "Hi there"
-    fontSize: '4rem',  // Adjust font size for the greeting
+    fontSize: '3rem',  // Adjust font size for the greeting
     fontWeight: 400,  // Regular font weight
     margin: '0px',  // Add some space below the greeting
     display: 'inline',  // Ensures the greeting stays on the same line
+    lineHeight: 2.5
   },
   inlineText: {
     color: '#f5f5dc',  // Beige color for "I'm"
-    fontSize: '4rem',  // Same font size as greeting for consistency
+    fontSize: '1.5rem',  // Same font size as greeting for consistency
     fontWeight: 400,  // Regular font weight
-  },
-  text: {
-    color: '#f5f5dc',  // Beige color for the rest of the text
-    fontSize: '2rem',  // Adjust font size for the rest of the text
-    fontWeight: 400,  // Regular font weight
-    margin: '0px',  // Add some space below the text
+    margin: '0px',
+    lineHeight: 2
   },
 };
 
